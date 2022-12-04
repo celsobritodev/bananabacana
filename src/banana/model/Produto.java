@@ -1,5 +1,9 @@
 package banana.model;
 
+import java.util.ArrayList;
+
+import banana.dao.ProdutoDao;
+
 public class Produto {
 
 	private int idProduto;
@@ -65,6 +69,31 @@ public class Produto {
 
 	public void setOnLine(boolean onLine) {
 		this.onLine = onLine;
+	}
+	
+	public void salvar() {
+	  System.out.println("banana salva!");
+	  new ProdutoDao().cadastrarProduto(this);
+	}
+	
+	
+	public void excluir(int idProduto) {
+		new ProdutoDao().ExcluirProduto(idProduto);
+		
+	}
+	
+	
+	public Produto buscarProdutoPorId(int idProduto) {
+		return new ProdutoDao().BuscarProdutoPorId(idProduto);
+	}
+	
+	
+	public void alterar() {
+		new ProdutoDao().AlterarProduto(this);
+	}
+	
+	public ArrayList<Produto> buscarProdutosPorDescricao(String descricao) {
+		return new ProdutoDao().BuscarProdutosPorDescricao(descricao);
 	}
 
 }

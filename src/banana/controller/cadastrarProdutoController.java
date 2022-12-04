@@ -2,6 +2,7 @@ package banana.controller;
 
 import java.io.IOException;
 
+import banana.model.Produto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,18 +46,25 @@ public class cadastrarProdutoController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		String descricao = request.getParameter("descricao");
-		int quantidade;
-		double preco;
+		
 		String mensagem;
+		
 		if (descricao != null && !descricao.isEmpty() && request.getParameter("quantidade") != null
 				&& !request.getParameter("quantidade").isEmpty() && request.getParameter("preco") != null
 				&& !request.getParameter("preco").isEmpty()) {
+			
+			int quantidade;
+			double preco;
 			quantidade = Integer.parseInt(request.getParameter("quantidade"));
 
 			preco = Double.parseDouble(request.getParameter("preco"));
 
 			boolean online = (request.getParameter("online") != null) && (request.getParameter("online").equals("on"));
 
+			Produto produto = new Produto(descricao,quantidade,preco,online);
+		
+			produto.salvar();
+			
 			mensagem = "Produto cadastrado com sucesso";
 
 		} else {

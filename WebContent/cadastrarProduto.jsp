@@ -18,7 +18,7 @@
 		</ul>
 	</nav>
 	<main class="bananaMain">
-		<form action="" method="post" class="bananaForm">
+		<form action="cadastrarProduto" method="post" class="bananaForm">
 			<div>
 				<label><strong>Descrição:</strong></label><input type="text"
 					name="descricao">
@@ -39,6 +39,17 @@
 				<input id="bananaButton" type="submit" name="salvar"
 					value="Cadastrar Produto">
 			</div>
+
+			<div>
+			<%
+                 String mensagem = (String) request.getAttribute("mensagem");
+			     if (mensagem!=null)
+			    	  out.println(mensagem);
+			
+			%>
+			</div>
+			
+			
 		</form>
 	</main>
 </body>
